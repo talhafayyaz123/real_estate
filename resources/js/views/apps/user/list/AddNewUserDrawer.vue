@@ -1,9 +1,8 @@
 <script setup>
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 import {
-  emailValidator,
   requiredValidator,
 } from '@validators'
+import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 
 const props = defineProps({
   isDrawerOpen: {
@@ -19,13 +18,11 @@ const emit = defineEmits([
 
 const isFormValid = ref(false)
 const refForm = ref()
-const fullName = ref('')
-const email = ref('')
-const company = ref('')
+const name = ref('')
+const number = ref('')
+const price = ref('')
 const country = ref('')
-const contact = ref('')
-const role = ref()
-const plan = ref()
+const type = ref('')
 const status = ref()
 
 // 👉 drawer close
@@ -42,16 +39,12 @@ const onSubmit = () => {
     if (valid) {
       emit('userData', {
         id: 0,
-        fullName: fullName.value,
-        company: company.value,
-        role: role.value,
+        name: name.value,
+        price: price.value,
         country: country.value,
-        contact: contact.value,
-        email: email.value,
-        currentPlan: plan.value,
+        type: type.value,
+        number: number.value,
         status: status.value,
-        avatar: '',
-        billing: 'Auto Debit',
       })
       emit('update:isDrawerOpen', false)
       nextTick(() => {
@@ -79,7 +72,7 @@ const handleDrawerModelValueUpdate = val => {
     <!-- 👉 Title -->
     <div class="d-flex align-center pa-6 pb-1">
       <h6 class="text-h6">
-        Add User
+        Add Property
       </h6>
 
       <VSpacer />
@@ -113,66 +106,47 @@ const handleDrawerModelValueUpdate = val => {
               <!-- 👉 Full name -->
               <VCol cols="12">
                 <VTextField
-                  v-model="fullName"
+                  v-model="name"
                   :rules="[requiredValidator]"
-                  label="Full Name"
+                  label="Name"
                 />
               </VCol>
 
               <!-- 👉 Email -->
               <VCol cols="12">
                 <VTextField
-                  v-model="email"
-                  :rules="[requiredValidator, emailValidator]"
-                  label="Email"
+                  v-model="number"
+                  :rules="[requiredValidator]"
+                  label="Number"
                 />
               </VCol>
 
               <!-- 👉 company -->
               <VCol cols="12">
                 <VTextField
-                  v-model="company"
+                  v-model="price"
                   :rules="[requiredValidator]"
-                  label="Company"
+                  label="Price"
                 />
               </VCol>
 
               <!-- 👉 Country -->
               <VCol cols="12">
                 <VTextField
-                  v-model="country"
+                  v-model="type"
                   :rules="[requiredValidator]"
-                  label="Country"
+                  label="Type"
                 />
               </VCol>
 
-              <!-- 👉 Contact -->
-              <VCol cols="12">
-                <VTextField
-                  v-model="contact"
-                  type="number"
-                  :rules="[requiredValidator]"
-                  label="Contact"
-                />
-              </VCol>
-
-              <!-- 👉 Role -->
-              <VCol cols="12">
-                <VSelect
-                  v-model="role"
-                  label="Select Role"
-                  :rules="[requiredValidator]"
-                  :items="['Admin', 'Author', 'Editor', 'Maintainer', 'Subscriber']"
-                />
-              </VCol>
 
               <!-- 👉 Plan -->
               <VCol cols="12">
                 <VSelect
-                  v-model="plan"
-                  label="Select Plan"
+                  v-model="country"
+                  label="Country"
                   :rules="[requiredValidator]"
-                  :items="['Basic', 'Company', 'Enterprise', 'Team']"
+                  :items="['Pakistan', 'Canada', 'US']"
                 />
               </VCol>
 
@@ -182,7 +156,7 @@ const handleDrawerModelValueUpdate = val => {
                   v-model="status"
                   label="Select Status"
                   :rules="[requiredValidator]"
-                  :items="[{ title: 'Active', value: 'active' }, { title: 'Inactive', value: 'inactive' }, { title: 'Pending', value: 'pending' }]"
+                  :items="[{ title: 'Active', value: 'active' }, { title: 'Inactive', value: 'inactive' }]"
                 />
               </VCol>
 
