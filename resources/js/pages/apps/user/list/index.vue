@@ -16,7 +16,7 @@ const users = ref([])
 
 // 👉 Fetching users
 const fetchUsers = () => {
-  userListStore.fetchUsers({
+  userListStore.fetchProperty({
     q: searchQuery.value,
     status: selectedStatus.value,
     plan: selectedPlan.value,
@@ -40,48 +40,7 @@ watchEffect(() => {
     currentPage.value = totalPage.value
 })
 
-// 👉 search filters
-const roles = [
-  {
-    title: 'Admin',
-    value: 'admin',
-  },
-  {
-    title: 'Author',
-    value: 'author',
-  },
-  {
-    title: 'Editor',
-    value: 'editor',
-  },
-  {
-    title: 'Maintainer',
-    value: 'maintainer',
-  },
-  {
-    title: 'Subscriber',
-    value: 'subscriber',
-  },
-]
 
-const plans = [
-  {
-    title: 'Basic',
-    value: 'basic',
-  },
-  {
-    title: 'Company',
-    value: 'company',
-  },
-  {
-    title: 'Enterprise',
-    value: 'enterprise',
-  },
-  {
-    title: 'Team',
-    value: 'team',
-  },
-]
 
 const status = [
   {
@@ -124,7 +83,7 @@ const resolveUserRoleVariant = role => {
       color: 'secondary',
       icon: 'tabler-device-laptop',
     }
-  
+
   return {
     color: 'primary',
     icon: 'tabler-user',
@@ -138,7 +97,7 @@ const resolveUserStatusVariant = stat => {
     return 'success'
   if (stat === 'inactive')
     return 'secondary'
-  
+
   return 'primary'
 }
 
@@ -154,7 +113,7 @@ watchEffect(() => {
 const paginationData = computed(() => {
   const firstIndex = users.value.length ? (currentPage.value - 1) * rowPerPage.value + 1 : 0
   const lastIndex = users.value.length + (currentPage.value - 1) * rowPerPage.value
-  
+
   return `Showing ${ firstIndex } to ${ lastIndex } of ${ totalUsers.value } entries`
 })
 
@@ -164,124 +123,14 @@ const addNewUser = userData => {
   // refetch User
   fetchUsers()
 }
-
-// 👉 List
-const userListMeta = [
-  {
-    icon: 'tabler-user',
-    color: 'primary',
-    title: 'Session',
-    stats: '21,459',
-    percentage: +29,
-    subtitle: 'Total Users',
-  },
-  {
-    icon: 'tabler-user-plus',
-    color: 'error',
-    title: 'Paid Users',
-    stats: '4,567',
-    percentage: +18,
-    subtitle: 'Last week analytics',
-  },
-  {
-    icon: 'tabler-user-check',
-    color: 'success',
-    title: 'Active Users',
-    stats: '19,860',
-    percentage: -14,
-    subtitle: 'Last week analytics',
-  },
-  {
-    icon: 'tabler-user-exclamation',
-    color: 'warning',
-    title: 'Pending Users',
-    stats: '237',
-    percentage: +42,
-    subtitle: 'Last week analytics',
-  },
-]
 </script>
 
 <template>
   <section>
     <VRow>
-      <VCol
-        v-for="meta in userListMeta"
-        :key="meta.title"
-        cols="12"
-        sm="6"
-        lg="3"
-      >
-        <VCard>
-          <VCardText class="d-flex justify-space-between">
-            <div>
-              <span>{{ meta.title }}</span>
-              <div class="d-flex align-center gap-2 my-1">
-                <h6 class="text-h6">
-                  {{ meta.stats }}
-                </h6>
-                <span :class="meta.percentage > 0 ? 'text-success' : 'text-error'">({{ meta.percentage }}%)</span>
-              </div>
-              <span>{{ meta.subtitle }}</span>
-            </div>
-
-            <VAvatar
-              rounded
-              variant="tonal"
-              :color="meta.color"
-              :icon="meta.icon"
-            />
-          </VCardText>
-        </VCard>
-      </VCol>
-
       <VCol cols="12">
-        <VCard title="Search Filter">
+        <VCard title="Property List">
           <!-- 👉 Filters -->
-          <VCardText>
-            <VRow>
-              <!-- 👉 Select Role -->
-              <VCol
-                cols="12"
-                sm="4"
-              >
-                <VSelect
-                  v-model="selectedRole"
-                  label="Select Role"
-                  :items="roles"
-                  clearable
-                  clear-icon="tabler-x"
-                />
-              </VCol>
-              <!-- 👉 Select Plan -->
-              <VCol
-                cols="12"
-                sm="4"
-              >
-                <VSelect
-                  v-model="selectedPlan"
-                  label="Select Plan"
-                  :items="plans"
-                  clearable
-                  clear-icon="tabler-x"
-                />
-              </VCol>
-              <!-- 👉 Select Status -->
-              <VCol
-                cols="12"
-                sm="4"
-              >
-                <VSelect
-                  v-model="selectedStatus"
-                  label="Select Status"
-                  :items="status"
-                  clearable
-                  clear-icon="tabler-x"
-                />
-              </VCol>
-            </VRow>
-          </VCardText>
-
           <VDivider />
 
           <VCardText class="d-flex flex-wrap py-4 gap-4">
@@ -323,7 +172,7 @@ const userListMeta = [
                 prepend-icon="tabler-plus"
                 @click="isAddNewUserDrawerVisible = true"
               >
-                Add New User
+                Add Property
               </VBtn>
             </div>
           </VCardText>
@@ -335,16 +184,19 @@ const userListMeta = [
             <thead>
               <tr>
                 <th scope="col">
-                  USER
+                  Name
                 </th>
                 <th scope="col">
-                  ROLE
+                  Number
                 </th>
                 <th scope="col">
-                  PLAN
+                  Price
                 </th>
                 <th scope="col">
-                  BILLING
+                  Type
+                </th>
+                <th scope="col">
+                  Pakistan
                 </th>
                 <th scope="col">
                   STATUS
@@ -374,7 +226,7 @@ const userListMeta = [
                         v-if="user.avatar"
                         :src="user.avatar"
                       />
-                      <span v-else>{{ avatarText(user.fullName) }}</span>
+                      <span v-else>{{ avatarText(user.name) }}</span>
                     </VAvatar>
 
                     <div class="d-flex flex-column">
@@ -383,34 +235,30 @@ const userListMeta = [
                           :to="{ name: 'apps-user-view-id', params: { id: user.id } }"
                           class="font-weight-medium user-list-name"
                         >
-                          {{ user.fullName }}
+                          {{ user.name }}
                         </RouterLink>
                       </h6>
-                      <span class="text-sm text-disabled">@{{ user.email }}</span>
                     </div>
                   </div>
                 </td>
 
                 <!-- 👉 Role -->
                 <td>
-                  <VAvatar
-                    :color="resolveUserRoleVariant(user.role).color"
-                    :icon="resolveUserRoleVariant(user.role).icon"
-                    variant="tonal"
-                    size="30"
-                    class="me-4"
-                  />
-                  <span class="text-capitalize text-base">{{ user.role }}</span>
+                  <span class="text-capitalize text-base"> {{ user.number }}</span>
                 </td>
 
                 <!-- 👉 Plan -->
                 <td>
-                  <span class="text-capitalize text-base font-weight-semibold">{{ user.currentPlan }}</span>
+                  <span class="text-capitalize text-base font-weight-semibold">{{ user.price }}</span>
                 </td>
 
                 <!-- 👉 Billing -->
                 <td>
-                  <span class="text-base">{{ user.billing }}</span>
+                  <span class="text-base">{{ user.type }}</span>
+                </td>
+
+                <td>
+                  <span class="text-base">{{ user.country }}</span>
                 </td>
 
                 <!-- 👉 Status -->
