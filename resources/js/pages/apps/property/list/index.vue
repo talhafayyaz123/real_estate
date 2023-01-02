@@ -118,7 +118,7 @@ const paginationData = computed(() => {
 })
 
 const addNewUser = userData => {
-  userListStore.addUser(userData)
+  userListStore.addProperty(userData)
 
   // refetch User
   fetchUsers()

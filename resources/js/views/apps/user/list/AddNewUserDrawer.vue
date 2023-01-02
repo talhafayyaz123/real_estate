@@ -156,7 +156,7 @@ const handleDrawerModelValueUpdate = val => {
                   v-model="status"
                   label="Select Status"
                   :rules="[requiredValidator]"
-                  :items="[{ title: 'Active', value: 'active' }, { title: 'Inactive', value: 'inactive' }, { title: 'Pending', value: 'pending' }]"
+                  :items="[{ title: 'Active', value: 'active' }, { title: 'Inactive', value: 'inactive' }]"
                 />
               </VCol>
 

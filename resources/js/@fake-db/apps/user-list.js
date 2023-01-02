@@ -111,6 +111,19 @@ mock.onPost('/apps/users/user').reply(config => {
 
   return [201, { user }]
 })
+
+mock.onPost('/apps/users/property').reply(config => {
+  const { user } = JSON.parse(config.data)
+  const { length } = users
+  let lastIndex = 0
+  if (length)
+    lastIndex = Property[length - 1].id
+  Property.id = lastIndex + 1
+  Property.push(user)
+
+  return [201, { user }]
+})
+
 mock.onGet(/\/apps\/users\/\d+/).reply(config => {
   // Get event id from URL
   const userId = config.url?.substring(config.url.lastIndexOf('/') + 1)
