@@ -1,0 +1,36 @@
+.header{
+  padding: 4px 0px;
+  width: 100%;
+  background: #fff;
+  .v-container{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+.fut_header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .fut_brand{
+    img{
+      width: 35%;
+    }
+  }
+  .fut_nav{
+    ul.fut_navigation{
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      li.nav-items{
+        margin: 0px 10px;
+        .nav-link{
+          font-size: 16px;
+          cursor: pointer;
+          &:hover{
+            color: #7a60e0;
+          }
+        }
+      }
+    }
+  }
+}
