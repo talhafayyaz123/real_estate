@@ -15,14 +15,14 @@ class PropertyResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name,
-            'number' => $this->number,
-            'description' => $this->description,
-            'price' => $this->price,
-            'type' => $this->type,
-            'status' => $this->status == 1 ? true : false,
-            'property_image' => $this->property_image,
-            'user_id' => $this->user_id
+            'name' => $this->resource->name,
+            'number' => $this->resource->number,
+            'description' => $this->resource->description,
+            'price' => $this->resource->price,
+            'type' => $this->resource->type,
+            'status' => $this->resource->status == 1 ? true : false,
+            'property_image' => $this->resource->property_image,
+            'user_id' => $this->resource->user_id
         ];
     }
 }
