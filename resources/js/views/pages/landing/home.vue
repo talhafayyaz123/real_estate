@@ -57,6 +57,133 @@
         </div>
       </VContainer>
     </section>
+    <!--==========================================-->
+    <section class="listing-property">
+      <v-container>
+        <v-row>
+          <v-col md="4">
+            <div class="card-property">
+              <div class="prop-img">
+                <img src="@images/img/1.webp" alt="">
+              </div>
+              <div class="content">
+                <div>
+                  <h2>1339 E 115th St</h2>
+                  <p>Cleveland, OH 44106</p>
+                </div>
+                <div>
+                  <span>8.8% IRR</span>
+                  <h2>8.8% CoC</h2>
+                </div>
+              </div>
+              <div class="bott">
+                <span>Available: 1,998 tokens at $50</span>
+              </div>
+            </div>
+          </v-col>
+          <v-col md="4">
+            <div class="card-property">
+              <div class="prop-img">
+                <img src="@images/img/1.webp" alt="">
+              </div>
+              <div class="content">
+                <div>
+                  <h2>1339 E 115th St</h2>
+                  <p>Cleveland, OH 44106</p>
+                </div>
+                <div>
+                  <span>8.8% IRR</span>
+                  <h2>8.8% CoC</h2>
+                </div>
+              </div>
+              <div class="bott">
+                <span>Available: 1,998 tokens at $50</span>
+              </div>
+            </div>
+          </v-col>
+          <v-col md="4">
+            <div class="card-property">
+              <div class="prop-img">
+                <img src="@images/img/1.webp" alt="">
+              </div>
+              <div class="content">
+                <div>
+                  <h2>1339 E 115th St</h2>
+                  <p>Cleveland, OH 44106</p>
+                </div>
+                <div>
+                  <span>8.8% IRR</span>
+                  <h2>8.8% CoC</h2>
+                </div>
+              </div>
+              <div class="bott">
+                <span>Available: 1,998 tokens at $50</span>
+              </div>
+            </div>
+          </v-col>
+          <v-col md="4">
+            <div class="card-property">
+              <div class="prop-img">
+                <img src="@images/img/1.webp" alt="">
+              </div>
+              <div class="content">
+                <div>
+                  <h2>1339 E 115th St</h2>
+                  <p>Cleveland, OH 44106</p>
+                </div>
+                <div>
+                  <span>8.8% IRR</span>
+                  <h2>8.8% CoC</h2>
+                </div>
+              </div>
+              <div class="bott">
+                <span>Available: 1,998 tokens at $50</span>
+              </div>
+            </div>
+          </v-col>
+          <v-col md="4">
+            <div class="card-property">
+              <div class="prop-img">
+                <img src="@images/img/1.webp" alt="">
+              </div>
+              <div class="content">
+                <div>
+                  <h2>1339 E 115th St</h2>
+                  <p>Cleveland, OH 44106</p>
+                </div>
+                <div>
+                  <span>8.8% IRR</span>
+                  <h2>8.8% CoC</h2>
+                </div>
+              </div>
+              <div class="bott">
+                <span>Available: 1,998 tokens at $50</span>
+              </div>
+            </div>
+          </v-col>
+          <v-col md="4">
+            <div class="card-property">
+              <div class="prop-img">
+                <img src="@images/img/1.webp" alt="">
+              </div>
+              <div class="content">
+                <div>
+                  <h2>1339 E 115th St</h2>
+                  <p>Cleveland, OH 44106</p>
+                </div>
+                <div>
+                  <span>8.8% IRR</span>
+                  <h2>8.8% CoC</h2>
+                </div>
+              </div>
+              <div class="bott">
+                <span>Available: 1,998 tokens at $50</span>
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </section>
   </div>
 </template>
 

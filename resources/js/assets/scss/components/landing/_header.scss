@@ -13,7 +13,7 @@
   justify-content: space-between;
   .fut_brand{
     img{
-      width: 26%;
+      width: 35%;
     }
   }
   .fut_nav{
@@ -24,7 +24,8 @@
       li.nav-items{
         margin: 0px 10px;
         .nav-link{
-          font-size: 14px;
+          font-size: 16px;
+          cursor: pointer;
           &:hover{
             color: #7a60e0;
           }

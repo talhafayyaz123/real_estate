@@ -1,3 +1,6 @@
+body{
+  background: #F6F7FB;
+}
 .fut_banner{
   min-height: 500px;
   background: url('@images/img/real.jpg');
@@ -41,6 +44,49 @@
     &:focus{
       outline: none;
       border-color: #7a60e0;
+    }
+  }
+}
+.listing-property{
+  padding: 50px 0px;
+}
+.card-property{
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background: #fff;
+  .prop-img{
+    img{
+      width: 100%;
+    }
+  }
+  .content{
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    h2{
+      font-size: 16px;
+    }
+    p{
+      color: #999;
+      font-size: 12px;
+    }
+    span{
+      font-size: 22px;
+      color: #7a60e0;
+    }
+    
+  }
+  .bott{
+    background: #7a60e0;
+    padding: 10px 15px;
+    border-radius: 0px 0px 10px 10px;
+    text-align: center;
+    span{
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      
     }
   }
 }
