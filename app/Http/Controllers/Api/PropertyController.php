@@ -14,14 +14,13 @@ class PropertyController extends ApiController
             'status' => true,
             'message' => 'Properties has been fetched succefully!',
             'data' => [
-                'properties' => PropertyResource::collection($properties)
+                'properties' => $properties
             ],
         ]);
 
     }
 
     public function storeProperty(Request $request) {
-
         $property = Property::storeProperty($request);
         return $this->respond([
             'status' => true,
@@ -46,6 +45,15 @@ class PropertyController extends ApiController
             'data' => [
                 'property' => new PropertyResource($property)
             ],
+        ]);
+    }
+
+    public function deleteProperty(Request $request) {
+        Property::deleteProperty($request);
+        return $this->respond([
+            'status' => true,
+            'message' => 'Property has been deleted successfully!',
+            'data' => [],
         ]);
     }
 }

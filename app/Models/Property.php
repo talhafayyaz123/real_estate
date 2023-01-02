@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +13,7 @@ class Property extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name','number','description','price','property_image','type','status','user_id'];
+    protected $fillable = ['name','number','description','price','property_image','country','area','type','status','user_id'];
 
     public static function boot()
     {
@@ -26,7 +27,37 @@ class Property extends Model
     }
 
     public static function getProperties($request) {
-        $properties = Property::all();
+        
+        $properties = Property::when($request->name, function ($query, $name) {
+            return $query->where('name', 'LIKE', "%{$name}%");
+        })
+        ->when($request->country, function ($query, $country) {
+            if($country == 'all_markets') {
+                return $query->orderBy('id');
+            } else {
+                return $query->where('country',$country);
+            }
+        })
+        ->when($request->type, function ($query, $type) {
+            return $query->where('type',$type);
+        })
+        ->when($request->area, function ($query, $area) {
+            return $query->where('area',$area);
+        })
+        ->when($request->new, function ($query) {
+            return $query->whereBetween('properties.created_at', [Carbon::now()->subDays(3)->startOfDay(), Carbon::now()->endofDay()])
+                ->orderBy('properties.created_at', 'asc');
+        })
+        ->when($request->all, function ($query) {
+            return $query->orderBy('properties.created_at', 'asc');
+        })
+        ->when($request->sortBy, function ($query, $sortBy) {
+            return $query->orderBy($sortBy, request('sortDesc') == 'true' ? 'asc' : 'desc');
+        })
+        ->when($request->page, function ($query, $page) {
+            return $query->offset($page - 1);
+        })
+        ->paginate($request->perPage);
         return $properties;
     }
 
@@ -38,6 +69,7 @@ class Property extends Model
             $property->property_image = self::uploadPropertyImage($request,'property_image');
         }
         $property->save();
+        return $property;
     }
 
     public static function updateProperty($request) {
@@ -51,6 +83,13 @@ class Property extends Model
             $data['property_image'] = self::uploadPropertyImage($request,'property_image');
         }
         $property->update($data);
+        return $property;
+    }
+
+    public static function deleteProperty($request) {
+        $property = Property::where('uuid',$request->property_uuid)->first();
+        $property->delete();
+        return $property;
     }
 
     public static function uploadPropertyImage($request, $file_name)

@@ -19,6 +19,8 @@ class PropertyResource extends JsonResource
             'number' => $this->resource->number,
             'description' => $this->resource->description,
             'price' => $this->resource->price,
+            'country' => $this->resource->country,
+            'area' => $this->resource->area,
             'type' => $this->resource->type,
             'status' => $this->resource->status == 1 ? true : false,
             'property_image' => $this->resource->property_image,
