@@ -21,8 +21,11 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->integer('price')->nullable();
             $table->string('property_image')->nullable();
+            $table->string('country')->nullable();
+            $table->string('area')->nullable();
             $table->string('type')->nullable();
             $table->boolean('status')->default(false);
+            $table->boolean('location')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
