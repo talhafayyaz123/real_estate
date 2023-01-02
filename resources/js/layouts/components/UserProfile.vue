@@ -1,5 +1,27 @@
 <script setup>
+import { initialAbility } from '@/plugins/casl/ability'
+import { useAppAbility } from '@/plugins/casl/useAppAbility'
 import avatar1 from '@images/avatars/avatar-1.png'
+const router = useRouter()
+const ability = useAppAbility()
+const userData = JSON.parse(localStorage.getItem('userData') || 'null')
+
+const logout = () => {
+
+  // Remove "userData" from localStorage
+  localStorage.removeItem('userData')
+
+  // Remove "accessToken" from localStorage
+  localStorage.removeItem('accessToken')
+  router.push('/login').then(() => {
+
+    // Remove "userAbilities" from localStorage
+    localStorage.removeItem('userAbilities')
+
+    // Reset ability to initial ability
+    ability.update(initialAbility)
+  })
+}
 </script>
 
 <template>
@@ -111,7 +133,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
           <VDivider class="my-2" />
 
           <!-- 👉 Logout -->
-          <VListItem to="/login">
+          <VListItem @click="logout">
             <template #prepend>
               <VIcon
                 class="me-2"
