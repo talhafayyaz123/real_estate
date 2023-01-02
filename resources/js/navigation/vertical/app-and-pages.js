@@ -4,7 +4,7 @@ export default [
     title: 'Property',
     icon: { icon: 'tabler-user' },
     children: [
-      { title: 'List', to: 'apps-user-list' },
+      { title: 'List', to: 'apps-property-list' },
     ],
   },
 
