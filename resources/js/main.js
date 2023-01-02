@@ -11,6 +11,9 @@ import router from '@/router'
 import { abilitiesPlugin } from '@casl/vue'
 import '@core-scss/template/index.scss'
 import '@styles/styles.scss'
+
+import './assets/scss/style.scss'
+
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 

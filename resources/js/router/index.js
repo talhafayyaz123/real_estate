@@ -11,16 +11,18 @@ const router = createRouter({
     // NOTE: Role is just for UI purposes. ACL is based on abilities.
     {
       path: '/',
-      redirect: to => {
-        const userData = JSON.parse(localStorage.getItem('userData') || '{}')
-        const userRole = userData && userData.role ? userData.role : null
-        if (userRole === 'admin')
-          return { name: 'dashboards-analytics' }
-        if (userRole === 'client')
-          return { name: 'access-control' }
+      name: 'home',
+      component: () => import("@/views/pages/landing/home.vue"), 
+      // redirect: to => {
+      //   const userData = JSON.parse(localStorage.getItem('userData') || '{}')
+      //   const userRole = userData && userData.role ? userData.role : null
+      //   if (userRole === 'admin')
+      //     return { name: 'dashboards-analytics' }
+      //   if (userRole === 'client')
+      //     return { name: 'access-control' }
         
-        return { name: 'login', query: to.query }
-      },
+      //   return { name: 'login', query: to.query }
+      // },
     },
     {
       path: '/pages/user-profile',

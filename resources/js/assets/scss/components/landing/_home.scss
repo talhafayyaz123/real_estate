@@ -1,0 +1,46 @@
+.fut_banner{
+  min-height: 500px;
+  background: url('@images/img/real.jpg');
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  position: relative;
+  .overlay{
+    background: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+  }
+}
+.fut_filters{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  button{
+    color: #fff;
+  }
+}
+.filter{
+  width: 100%;
+  background: #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  .input{
+    width: 100%;
+    border: 1px solid #999;
+    border-radius: 5px;
+    padding: 7px 15px;
+    color: #fff;
+    &:focus{
+      outline: none;
+      border-color: #7a60e0;
+    }
+  }
+}
