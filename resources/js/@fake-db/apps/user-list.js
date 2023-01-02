@@ -173,7 +173,7 @@ mock.onGet(/\/apps\/users\/\d+/).reply(config => {
   return [404]
 })
 
-mock.onGet(/\/search\/properties\/\d+/).reply(config => {
+/* mock.onGet(/\/search\/properties\/\d+/).reply(config => {
   // Get event id from URL
   const name = config.url?.substring(config.url.lastIndexOf('/') + 1)
 
@@ -191,4 +191,4 @@ mock.onGet(/\/search\/properties\/\d+/).reply(config => {
     return [200, user]
 
   return [404]
-})
+}) */
